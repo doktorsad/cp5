@@ -49,7 +49,6 @@ public:
         return false;
     }
 
-    template<typename T>
     class Proxy {
     public:
         Proxy(int* array, int row_pr) : array(array), row_pr(row_pr) {}
@@ -79,29 +78,29 @@ public:
         T* array;
     };
 
-
-    Proxy<T> operator[](int idx_i) {
+    Proxy operator[](int idx_i) {
         if (!at_col(idx_i))
              throw MyException("the first index was passed incorrectly");
-        return Proxy<T>(arr[idx_i], row);
+        return Proxy(arr[idx_i], row);
      
     }
 
-    const Proxy<T> operator[](int idx_i) const {
+    const Proxy operator[](int idx_i) const {
         if (!at_col(idx_i))
              throw MyException("the first index was passed incorrectly");
-        return Proxy<T>(arr[idx_i], row);
+        return Proxy(arr[idx_i], row);
     }
 };
 
 // Просмотренно много форумов, говорят проще реализовать оператор(), мб есть способ лучше?
+
 int main() {
     try{
         const int x = 1;
         BivariateArr<int> arr(1, 5);
         arr[0][0] = x;
         arr[0][1] = 2;
-        arr[0][5] = 1;
+        arr[0][6] = 1;
         std::cout << arr[0][0] << arr[0][1] << std::endl;
         return 0;
     }
