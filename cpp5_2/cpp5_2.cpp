@@ -51,7 +51,7 @@ public:
 
     class Proxy {
     public:
-        Proxy(int* array, int row_pr) : array(array), row_pr(row_pr) {}
+        Proxy(T* array, int row_pr) : array(array), row_pr(row_pr) {}
         ~Proxy() = default;
         T &operator[] (int index) {
             if (!at(index))
